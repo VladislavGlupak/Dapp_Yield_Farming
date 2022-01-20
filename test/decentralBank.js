@@ -4,7 +4,7 @@ const DecentralBank = artifacts.require("DecentralBank");
 
 require('chai')
 .use(require('chai-as-promised'))
-.should
+.should()
 
 contract('DecentralBank', ([owner, customer]) => {
     let tether, rwd, decentralBank
@@ -73,6 +73,12 @@ contract('DecentralBank', ([owner, customer]) => {
             // is staking balance
             result = await decentralBank.isStaking(customer)
             assert.equal(result.toString(), 'true', 'customer is staking status after staking')
+
+            // issue tokens
+            await decentralBank.issueTokens({from: owner})
+
+            // ensure only the owner can issue tokens
+            await decentralBank.issueTokens({from: customer}).should.be.rejected;
         })
     })
     })
