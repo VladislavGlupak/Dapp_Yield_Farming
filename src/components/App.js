@@ -66,6 +66,31 @@ class App extends Component {
         this.setState({loading: false})
     }
 
+    // staking function (https://github.com/MetaMask/metamask-extension/issues/13197)
+    stakeTokens = async (amount) => {
+        this.setState({ loading: true });
+
+        await this.state.tether.methods
+        .approve(this.state.decentralBank._address, amount)
+        .send({ from: this.state.account });
+
+        await this.state.decentralBank.methods
+        .depositTokens(amount)
+        .send({ from: this.state.account });
+
+        this.setState({ loading: false });
+    };
+
+    // unstaking function
+    unstakeTokens = () => {
+        this.setState({loading: true})
+
+        this.state.decentralBank.methods.unstakeTokens()
+        .send({from: this.state.account}).on("transactionHash", (hash) => {
+        this.setState({loading: false})
+        })
+    }
+
     constructor(props){
         super(props)
         this.state = {
@@ -89,6 +114,8 @@ class App extends Component {
             tetherBalance={this.state.tetherBalance}
             rwdBalance={this.state.rwdBalance}
             stakingBalance={this.state.stakingBalance}
+            stakeTokens={this.stakeTokens}
+            unstakeTokens={this.unstakeTokens}
             />}
         return (
             <div>
