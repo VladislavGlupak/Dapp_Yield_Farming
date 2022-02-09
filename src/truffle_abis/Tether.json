@@ -5083,12 +5083,13 @@
         }
       },
       "links": {},
-      "address": "0xfE6B508ec370Ad2D582eA24cd7b182A84A71ad37",
-      "transactionHash": "0xd4c9b258bb4e607eb658232964db7e909972a5ab519cc5ba5107290b74b0e09c"
+      "address": "0x33943Ea51480dFe0896aA712139467290527a071",
+      "transactionHash": "0x94f4afe4f4a3b0acee5191de1a329d51dcd69a7f4f3d4bab36074310834084b1"
     }
   },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-02-02T02:13:54.953Z",
+  "updatedAt": "2022-02-09T00:13:11.438Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
